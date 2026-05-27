@@ -463,20 +463,28 @@ export default function App() {
   const [copied, setCopied] = useState(false);
 
   const [eventsByDate, setEventsByDate] = useState(() => {
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      return saved ? sanitizeEvents(JSON.parse(saved)) : defaultEvents;
-    } catch {
-      return defaultEvents;
-    }
+  if (!SHOW_EDITOR) {
+    return defaultEvents;
+  }
+
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    return saved ? sanitizeEvents(JSON.parse(saved)) : defaultEvents;
+  } catch {
+    return defaultEvents;
+  }
   });
 
   useEffect(() => {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(eventsByDate));
-    } catch {
-      // Ignore localStorage errors.
-    }
+  if (!SHOW_EDITOR) {
+    return;
+  }
+
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(eventsByDate));
+  } catch {
+    // Ignore localStorage errors.
+  }
   }, [eventsByDate]);
 
   const cells = useMemo(
