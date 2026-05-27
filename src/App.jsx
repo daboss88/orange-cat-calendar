@@ -14,6 +14,8 @@ import {
   Edit3,
   MessageCircle,
 } from "lucide-react";
+import { defaultEvents } from "./calendarEvents";
+
 
 /**
  * Set this to false before deploying publicly if you only want customers to view.
@@ -21,6 +23,13 @@ import {
  * false = viewer-only version for customers
  */
 const SHOW_EDITOR = false;
+
+const WHATSAPP_URL = "https://wa.me/601155559625";
+const INSTAGRAM_URL = "https://www.instagram.com/orangecat.bakes/";
+
+const HOME_ASSETS = {
+  logo: "/home-logo.png",
+};
 
 const STORAGE_KEY = "orange-cat-bake-calendar-events-v1";
 
@@ -92,125 +101,6 @@ const pad = (value) => String(value).padStart(2, "0");
 const makeDateKey = (year, monthIndex, day) =>
   `${year}-${pad(monthIndex + 1)}-${pad(day)}`;
 
-const defaultEvents = {
-  "2026-06-03": [
-    "close"
-  ],
-  "2026-06-05": [
-    "bake"
-  ],
-  "2026-06-06": [
-    "delivery"
-  ],
-  "2026-06-10": [
-    "close"
-  ],
-  "2026-06-12": [
-    "bake"
-  ],
-  "2026-06-13": [
-    "delivery"
-  ],
-  "2026-06-14": [
-    "unavailable"
-  ],
-  "2026-06-15": [
-    "unavailable"
-  ],
-  "2026-06-16": [
-    "unavailable"
-  ],
-  "2026-06-17": [
-    "unavailable"
-  ],
-  "2026-06-18": [
-    "unavailable"
-  ],
-  "2026-06-19": [
-    "soldOut"
-  ],
-  "2026-06-20": [
-    "soldOut"
-  ],
-  "2026-06-24": [
-    "close"
-  ],
-  "2026-06-26": [
-    "bake"
-  ],
-  "2026-06-27": [
-    "delivery"
-  ],
-  "2026-07-01": [
-    "close"
-  ],
-  "2026-07-03": [
-    "bake"
-  ],
-  "2026-07-04": [
-    "delivery"
-  ],
-  "2026-07-08": [
-    "close"
-  ],
-  "2026-07-10": [
-    "bake"
-  ],
-  "2026-07-11": [
-    "delivery"
-  ],
-  "2026-07-13": [
-    "unavailable"
-  ],
-  "2026-07-14": [
-    "unavailable"
-  ],
-  "2026-07-15": [
-    "unavailable"
-  ],
-  "2026-07-16": [
-    "unavailable"
-  ],
-  "2026-07-17": [
-    "unavailable"
-  ],
-  "2026-07-18": [
-    "unavailable"
-  ],
-  "2026-07-19": [
-    "unavailable"
-  ],
-  "2026-07-20": [
-    "unavailable"
-  ],
-  "2026-07-21": [
-    "unavailable"
-  ],
-  "2026-07-22": [
-    "unavailable"
-  ],
-  "2026-07-23": [
-    "unavailable"
-  ],
-  "2026-07-24": [
-    "unavailable"
-  ],
-  "2026-07-25": [
-    "unavailable"
-  ],
-  "2026-07-26": [
-    "unavailable"
-  ],
-  "2026-07-29": [
-    "close"
-  ],
-  "2026-07-31": [
-    "bake"
-  ],
-  "2026-08-01": [
-    "delivery"
-  ]
-};
 
 function sanitizeEvents(events) {
   const cleaned = {};
@@ -467,7 +357,111 @@ function InfoCard({ title, children, icon }) {
   );
 }
 
-export default function App() {
+
+function HomePage() {
+  return (
+    <main
+      className="relative min-h-screen w-full overflow-hidden bg-[#F7EADB] p-4 sm:p-8"
+      style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+    >
+      <section className="mx-auto flex min-h-[calc(100vh-2rem)] max-w-4xl items-center justify-center">
+          <div className="relative w-full pt-16 sm:pt-20">
+            <img
+              src={HOME_ASSETS.logo}
+              alt="The Orange Cat Bakery logo"
+              className="absolute left-1/2 top-0 z-10 h-24 w-24 -translate-x-1/2 object-contain drop-shadow-xl sm:h-32 sm:w-32"
+            />
+
+            <div className="w-full overflow-hidden rounded-[34px] bg-[#F68B45] p-3 shadow-2xl sm:p-6">
+              <div className="rounded-[28px] bg-[#FFF7EA] p-6 text-center shadow-xl sm:p-10">
+            <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full bg-[#F68B45] px-5 py-2 text-sm font-black uppercase tracking-wide text-white shadow-sm">
+              <PawPrint size={16} />
+              The Orange Cat Bakery
+            </div>
+
+            <h1 className="mx-auto max-w-2xl text-4xl font-black tracking-tight text-[#4A2818] sm:text-6xl">
+              Basque Cheesecake, Baked With Orange Cat Energy
+            </h1>
+
+            <p className="mx-auto mt-4 max-w-2xl text-base font-bold leading-relaxed text-[#8A5432] sm:text-lg">
+              Check our monthly bake calendar, then DM us to confirm your order,
+              pickup, or delivery timing.
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-[#4A2818] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
+              >
+                <MessageCircle size={18} />
+                WhatsApp Us
+              </a>
+
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-4 text-sm font-black text-[#4A2818] shadow-sm ring-2 ring-[#F6D7B8] transition hover:bg-[#FFE7C9]"
+              >
+                <PawPrint size={18} />
+                Instagram
+              </a>
+
+              <a
+                href="/calendar"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-[#F68B45] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
+              >
+                <CalendarDays size={18} />
+                View Calendar
+              </a>
+            </div>
+
+            <div className="mt-8 rounded-3xl border-2 border-[#F6D7B8] bg-white/70 p-5">
+              <p className="text-sm font-black uppercase tracking-wide text-[#A45128]">
+                How ordering works
+              </p>
+
+              <div className="mt-4 grid grid-cols-1 gap-3 text-left sm:grid-cols-3">
+                <div className="rounded-2xl bg-[#FFE7C9] p-4">
+                  <p className="text-sm font-black text-[#7B3F1D]">
+                    1. Check Calendar
+                  </p>
+                  <p className="mt-1 text-sm font-bold text-[#4A2818]">
+                    Review order cut-off, bake day, and delivery dates.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-[#FFF4BD] p-4">
+                  <p className="text-sm font-black text-[#6A5314]">
+                    2. DM to Confirm
+                  </p>
+                  <p className="mt-1 text-sm font-bold text-[#4A2818]">
+                    Message us first before making payment.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-[#E9F5E7] p-4">
+                  <p className="text-sm font-black text-[#365B31]">
+                    3. Pickup / Delivery
+                  </p>
+                  <p className="mt-1 text-sm font-bold text-[#4A2818]">
+                    Standard delivery slots are shown on the calendar page.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+    </main>
+  );
+}
+
+
+function CalendarPage() {
   const [year, setYear] = useState(2026);
   const [monthIndex, setMonthIndex] = useState(5);
   const [selectedDate, setSelectedDate] = useState("2026-06-20");
@@ -583,9 +577,19 @@ export default function App() {
         <div className="rounded-[24px] bg-[#FFF7EA] p-3 shadow-xl sm:rounded-[28px] sm:p-6">
           <header className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#F68B45] px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-sm">
-                <PawPrint size={16} />
-                The Orange Cat Bakery
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#F68B45] px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-sm">
+                  <PawPrint size={16} />
+                  The Orange Cat Bakery
+                </div>
+
+                <a
+                  href="/"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#4A2818] px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
+                >
+                  <PawPrint size={16} />
+                  Return Home
+                </a>
               </div>
 
               <h1 className="text-3xl font-black tracking-tight text-[#4A2818] sm:text-5xl">
@@ -767,4 +771,14 @@ export default function App() {
       </section>
     </main>
   );
+}
+
+export default function App() {
+  const path = window.location.pathname;
+
+  if (path === "/calendar") {
+    return <CalendarPage />;
+  }
+
+  return <HomePage />;
 }
