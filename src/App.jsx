@@ -26,6 +26,7 @@ const SHOW_EDITOR = false;
 
 const WHATSAPP_URL = "https://wa.me/601155559625";
 const INSTAGRAM_URL = "https://www.instagram.com/orangecat.bakes/";
+const TIKTOK_URL = "https://www.tiktok.com/@orangecat.bakes?_r=1&_t=ZS-96iBh0RZcht";
 
 const HOME_ASSETS = {
   logo: "/home-logo.png",
@@ -398,7 +399,7 @@ function HomePage() {
                 order, pickup, or delivery timing.
               </p>
 
-              <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
@@ -413,10 +414,20 @@ function HomePage() {
                   href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#515BD4] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:scale-[1.02] hover:shadow-md"
+                  className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#515BD4] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:brightness-110"
                 >
                   <PawPrint size={18} />
                   Instagram
+                </a>
+
+                <a
+                  href={TIKTOK_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2 rounded-2xl bg-[#010101] px-5 py-4 text-sm font-black text-white shadow-sm ring-2 ring-[#25F4EE]/70 transition hover:bg-[#1A1A1A]"
+                >
+                  <span className="text-lg font-black leading-none text-[#25F4EE]">♪</span>
+                  TikTok
                 </a>
 
                 <a
