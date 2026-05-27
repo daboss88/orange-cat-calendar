@@ -26,8 +26,8 @@ const STORAGE_KEY = "orange-cat-bake-calendar-events-v1";
 
 const EVENT_TYPES = {
   close: {
-    label: "Orders close",
-    short: "Close",
+    label: "Order cut-off",
+    short: "Order cut-off",
     icon: Clock3,
     bg: "#FFE7C9",
     text: "#7B3F1D",
