@@ -1,16 +1,50 @@
-# React + Vite
+# The Orange Cat Bakery — Bake Calendar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple monthly bake calendar for The Orange Cat Bakery.
 
-Currently, two official plugins are available:
+This calendar shows:
+- Order closing dates
+- Ingredient preparation days
+- Bake days
+- Delivery / collection days
+- Weekly availability notes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The calendar is designed for customers to quickly check the latest bake schedule before placing a pre-order.
 
-## React Compiler
+## How it works
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The public version is viewer-only.
 
-## Expanding the ESLint configuration
+Schedule dates are maintained inside the React app by updating the `defaultEvents` section in `src/App.jsx`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech stack
+
+- React
+- Vite
+- Tailwind CSS
+- Lucide React icons
+
+## Local development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run locally:
+
+```bash
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+## Notes
+
+This is a small personal project for managing monthly pre-order bake schedules.
+````
