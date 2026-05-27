@@ -111,14 +111,26 @@ const defaultEvents = {
   "2026-06-13": [
     "delivery"
   ],
+  "2026-06-14": [
+    "unavailable"
+  ],
+  "2026-06-15": [
+    "unavailable"
+  ],
+  "2026-06-16": [
+    "unavailable"
+  ],
   "2026-06-17": [
-    "close"
+    "unavailable"
+  ],
+  "2026-06-18": [
+    "unavailable"
   ],
   "2026-06-19": [
-    "bake"
+    "soldOut"
   ],
   "2026-06-20": [
-    "delivery"
+    "soldOut"
   ],
   "2026-06-24": [
     "close"
