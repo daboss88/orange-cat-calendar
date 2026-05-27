@@ -20,7 +20,7 @@ import {
  * true = local editable version for you
  * false = viewer-only version for customers
  */
-const SHOW_EDITOR = true;
+const SHOW_EDITOR = false;
 
 const STORAGE_KEY = "orange-cat-bake-calendar-events-v1";
 
