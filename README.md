@@ -47,4 +47,3 @@ npm run build
 ## Notes
 
 This is a small personal project for managing monthly pre-order bake schedules.
-````
