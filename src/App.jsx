@@ -103,58 +103,23 @@ const makeDateKey = (year, monthIndex, day) =>
   `${year}-${pad(monthIndex + 1)}-${pad(day)}`;
 
 const defaultEvents = {
-  "2026-06-03": [
-    "close"
-  ],
-  "2026-06-04": [
-    "ingredients"
-  ],
-  "2026-06-05": [
-    "bake"
-  ],
-  "2026-06-06": [
-    "delivery"
-  ],
-  "2026-06-10": [
-    "close"
-  ],
-  "2026-06-11": [
-    "ingredients"
-  ],
-  "2026-06-12": [
-    "bake"
-  ],
-  "2026-06-13": [
-    "delivery"
-  ],
-  "2026-06-17": [
-    "close"
-  ],
-  "2026-06-18": [
-    "ingredients"
-  ],
-  "2026-06-19": [
-    "bake"
-  ],
-  "2026-06-20": [
-    "delivery",
-    "soldOut"
-  ],
-  "2026-06-24": [
-    "close"
-  ],
-  "2026-06-25": [
-    "ingredients"
-  ],
-  "2026-06-26": [
-    "bake"
-  ],
-  "2026-06-27": [
-    "delivery"
-  ],
-  "2026-07-08": [
-    "close"
-  ]
+  "2026-06-03": ["close"],
+  "2026-06-04": ["ingredients"],
+  "2026-06-05": ["bake"],
+  "2026-06-06": ["delivery"],
+  "2026-06-10": ["close"],
+  "2026-06-11": ["ingredients"],
+  "2026-06-12": ["bake"],
+  "2026-06-13": ["delivery"],
+  "2026-06-17": ["close"],
+  "2026-06-18": ["ingredients"],
+  "2026-06-19": ["bake"],
+  "2026-06-20": ["delivery", "soldOut"],
+  "2026-06-24": ["close"],
+  "2026-06-25": ["ingredients"],
+  "2026-06-26": ["bake"],
+  "2026-06-27": ["delivery"],
+  "2026-07-08": ["close"],
 };
 
 function buildCalendarCells(year, monthIndex) {
@@ -181,7 +146,7 @@ function EventPill({ type, compact = false }) {
 
   return (
     <span
-      className="inline-flex items-center gap-1 rounded-full border px-2 py-1 text-[10px] font-black leading-none"
+      className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border px-2 py-1 text-[10px] font-black leading-none"
       style={{
         background: event.bg,
         color: event.text,
@@ -204,7 +169,7 @@ function DateCell({
   interactive,
 }) {
   if (!day) {
-    return <div className="min-h-[88px] rounded-2xl bg-white/25" />;
+    return <div className="min-h-[104px] rounded-2xl bg-white/25" />;
   }
 
   const dateKey = makeDateKey(year, monthIndex, day);
@@ -216,7 +181,7 @@ function DateCell({
       type="button"
       disabled={!interactive}
       onClick={() => interactive && onSelectDate(dateKey)}
-      className="min-h-[88px] rounded-2xl border p-2 text-left shadow-sm transition enabled:hover:-translate-y-0.5 enabled:hover:shadow-md"
+      className="min-h-[104px] rounded-2xl border p-2 text-left shadow-sm transition enabled:hover:-translate-y-0.5 enabled:hover:shadow-md"
       style={{
         background: events.length ? "#FFF9EF" : "#FFFDF8",
         borderColor: isSelected
@@ -228,7 +193,7 @@ function DateCell({
       }}
     >
       <div className="mb-2 flex items-center justify-between gap-2">
-        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F68B45] text-xs font-black text-white">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F68B45] text-xs font-black text-white">
           {day}
         </span>
 
@@ -348,12 +313,12 @@ function EditorPanel({
       </button>
 
       <button
-      type="button"
-      onClick={onCopyExport}
-      className="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#F68B45] px-3 py-2 text-sm font-black text-white transition hover:bg-[#A45128]"
-    >
-      <CalendarDays size={15} />
-      {copied ? "Copied schedule!" : "Export schedule"}
+        type="button"
+        onClick={onCopyExport}
+        className="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#F68B45] px-3 py-2 text-sm font-black text-white transition hover:bg-[#A45128]"
+      >
+        <CalendarDays size={15} />
+        {copied ? "Copied schedule!" : "Export schedule"}
       </button>
 
       <p className="mt-4 text-xs font-bold leading-relaxed text-[#8A5432]">
@@ -469,33 +434,33 @@ export default function App() {
   };
 
   const copyExport = async () => {
-  const sortedEvents = Object.keys(eventsByDate)
-    .sort()
-    .reduce((acc, dateKey) => {
-      acc[dateKey] = eventsByDate[dateKey];
-      return acc;
-    }, {});
+    const sortedEvents = Object.keys(eventsByDate)
+      .sort()
+      .reduce((acc, dateKey) => {
+        acc[dateKey] = eventsByDate[dateKey];
+        return acc;
+      }, {});
 
-  const exportText = `const defaultEvents = ${JSON.stringify(sortedEvents, null, 2)};`;
+    const exportText = `const defaultEvents = ${JSON.stringify(sortedEvents, null, 2)};`;
 
-  try {
-    await navigator.clipboard.writeText(exportText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
-  } catch {
-    window.prompt("Copy this schedule block:", exportText);
-  }
+    try {
+      await navigator.clipboard.writeText(exportText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.prompt("Copy this schedule block:", exportText);
+    }
   };
 
   const isEditable = SHOW_EDITOR && viewMode === "edit";
 
   return (
     <main
-      className="w-full bg-[#F7EADB] p-4 sm:p-6"
+      className="w-full overflow-x-hidden bg-[#F7EADB] p-2 sm:p-6"
       style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
     >
-      <section className="mx-auto w-full max-w-6xl rounded-[34px] bg-[#F68B45] p-4 shadow-2xl sm:p-6">
-        <div className="rounded-[28px] bg-[#FFF7EA] p-4 shadow-xl sm:p-6">
+      <section className="mx-auto w-full max-w-6xl overflow-hidden rounded-[28px] bg-[#F68B45] p-3 shadow-2xl sm:rounded-[34px] sm:p-6">
+        <div className="rounded-[24px] bg-[#FFF7EA] p-3 shadow-xl sm:rounded-[28px] sm:p-6">
           <header className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#F68B45] px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-sm">
@@ -522,7 +487,7 @@ export default function App() {
                 <ChevronLeft size={20} />
               </button>
 
-              <div className="min-w-[180px] text-center text-lg font-black text-[#4A2818]">
+              <div className="min-w-[150px] text-center text-base font-black text-[#4A2818] sm:min-w-[180px] sm:text-lg">
                 {MONTHS[monthIndex]} {year}
               </div>
 
@@ -572,35 +537,46 @@ export default function App() {
           <div
             className={
               SHOW_EDITOR
-                ? "grid gap-5 lg:grid-cols-[1fr_310px]"
-                : "grid gap-5"
+                ? "grid min-w-0 gap-5 lg:grid-cols-[1fr_310px]"
+                : "grid min-w-0 gap-5"
             }
           >
-            <section className="rounded-[28px] bg-[#F7EADB] p-3 shadow-inner sm:p-4">
-              <div className="mb-3 grid grid-cols-7 gap-2">
-                {weekdays.map((weekday) => (
-                  <div
-                    key={weekday}
-                    className="rounded-2xl bg-[#F68B45] py-2 text-center text-[10px] font-black tracking-wide text-white sm:text-xs"
-                  >
-                    {weekday}
-                  </div>
-                ))}
+            <section className="min-w-0 overflow-hidden rounded-[28px] bg-[#F7EADB] p-3 shadow-inner sm:p-4">
+              <div className="mb-2 flex items-center justify-between gap-2 px-1 sm:hidden">
+                <p className="text-xs font-black uppercase tracking-wide text-[#8A5432]">
+                  Swipe calendar sideways
+                </p>
+                <span className="text-lg font-black text-[#F68B45]">→</span>
               </div>
 
-              <div className="grid grid-cols-7 gap-2">
-                {cells.map((day, index) => (
-                  <DateCell
-                    key={`${day || "blank"}-${index}`}
-                    day={day}
-                    year={year}
-                    monthIndex={monthIndex}
-                    eventsByDate={eventsByDate}
-                    selectedDate={selectedDate}
-                    onSelectDate={setSelectedDate}
-                    interactive={isEditable}
-                  />
-                ))}
+              <div className="w-full max-w-full overflow-x-auto pb-3">
+                <div className="min-w-[760px]">
+                  <div className="mb-3 grid grid-cols-7 gap-2">
+                    {weekdays.map((weekday) => (
+                      <div
+                        key={weekday}
+                        className="rounded-2xl bg-[#F68B45] py-2 text-center text-xs font-black tracking-wide text-white"
+                      >
+                        {weekday}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-7 gap-2">
+                    {cells.map((day, index) => (
+                      <DateCell
+                        key={`${day || "blank"}-${index}`}
+                        day={day}
+                        year={year}
+                        monthIndex={monthIndex}
+                        eventsByDate={eventsByDate}
+                        selectedDate={selectedDate}
+                        onSelectDate={setSelectedDate}
+                        interactive={isEditable}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -654,10 +630,7 @@ export default function App() {
           </section>
 
           <section className="mt-5 grid grid-cols-1 gap-3 lg:grid-cols-3">
-            <InfoCard
-              title="How to Order"
-              icon={<MessageCircle size={15} />}
-            >
+            <InfoCard title="How to Order" icon={<MessageCircle size={15} />}>
               DM us first and wait for confirmation before making payment.
             </InfoCard>
 
