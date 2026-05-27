@@ -367,11 +367,9 @@ function InfoCard({ title, children, icon }) {
 function HomePage() {
   return (
     <main
-      className="relative min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-cover bg-center bg-no-repeat p-4 sm:p-8"
+      className="relative min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-[url('/cat-bg-mobile.png')] bg-cover bg-center bg-no-repeat p-4 sm:p-8 md:bg-[url('/cat-bg.png')]"
       style={{
         fontFamily: "Arial, Helvetica, sans-serif",
-        backgroundColor: "#F7EADB",
-        backgroundImage: "url('/cat-bg.png')",
       }}
     >
       <section className="mx-auto flex min-h-[calc(100vh-2rem)] max-w-6xl items-center justify-center py-8 sm:py-12">
@@ -581,11 +579,9 @@ function CalendarPage() {
 
   return (
     <main
-      className="min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-cover bg-center bg-no-repeat p-2 sm:p-4"
+      className="min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-cover bg-center bg-no-repeat p-2 sm:p-4 md:bg-[url('/cat-bg.png')]"
       style={{
         fontFamily: "Arial, Helvetica, sans-serif",
-        backgroundColor: "#F7EADB",
-        backgroundImage: "url('/cat-bg.png')",
       }}
     >
       <section className="mx-auto w-full max-w-6xl overflow-hidden rounded-[28px] bg-[#F68B45] p-3 shadow-2xl sm:rounded-[34px] sm:p-6">
