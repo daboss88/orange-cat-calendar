@@ -29,6 +29,12 @@ const INSTAGRAM_URL = "https://www.instagram.com/orangecat.bakes/";
 
 const HOME_ASSETS = {
   logo: "/home-logo.png",
+  cats: {
+    topLeft: "/cat-top-left.png",
+    topRight: "/cat-top-right.png",
+    bottomLeft: "/cat-bottom-left.png",
+    bottomRight: "/cat-bottom-right.png",
+  },
 };
 
 const STORAGE_KEY = "orange-cat-bake-calendar-events-v1";
@@ -361,105 +367,110 @@ function InfoCard({ title, children, icon }) {
 function HomePage() {
   return (
     <main
-      className="relative min-h-screen w-full overflow-hidden bg-[#F7EADB] p-4 sm:p-8"
-      style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+      className="relative min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-cover bg-center bg-no-repeat p-4 sm:p-8"
+      style={{
+        fontFamily: "Arial, Helvetica, sans-serif",
+        backgroundColor: "#F7EADB",
+        backgroundImage: "url('/cat-bg.png')",
+      }}
     >
-      <section className="mx-auto flex min-h-[calc(100vh-2rem)] max-w-4xl items-center justify-center">
-          <div className="relative w-full pt-16 sm:pt-20">
-            <img
-              src={HOME_ASSETS.logo}
-              alt="The Orange Cat Bakery logo"
-              className="absolute left-1/2 top-0 z-10 h-24 w-24 -translate-x-1/2 object-contain drop-shadow-xl sm:h-32 sm:w-32"
-            />
+      <section className="mx-auto flex min-h-[calc(100vh-2rem)] max-w-6xl items-center justify-center py-8 sm:py-12">
+        <div className="relative w-full px-4 pb-10 pt-40 sm:px-10 sm:pb-16 sm:pt-64">
+          {/* Logo outside orange card, on cream background */}
+          <img
+            src={HOME_ASSETS.logo}
+            alt="The Orange Cat Bakery logo"
+            className="pointer-events-none absolute left-1/2 -top-6 z-20 h-36 w-36 -translate-x-1/2 object-contain drop-shadow-xl sm:h-56 sm:w-56"
+          />
 
-            <div className="w-full overflow-hidden rounded-[34px] bg-[#F68B45] p-3 shadow-2xl sm:p-6">
-              <div className="rounded-[28px] bg-[#FFF7EA] p-6 text-center shadow-xl sm:p-10">
-            <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full bg-[#F68B45] px-5 py-2 text-sm font-black uppercase tracking-wide text-white shadow-sm">
-              <PawPrint size={16} />
-              The Orange Cat Bakery
-            </div>
+          {/* Main orange card */}
+          <div className="relative z-10 w-full overflow-hidden rounded-[34px] bg-[#F68B45] p-3 shadow-2xl sm:p-6">
+            <div className="rounded-[28px] bg-[#FFF7EA] p-6 text-center shadow-xl sm:p-10">
+              <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full bg-[#F68B45] px-5 py-2 text-sm font-black uppercase tracking-wide text-white shadow-sm">
+                <PawPrint size={16} />
+                The Orange Cat Bakery
+              </div>
 
-            <h1 className="mx-auto max-w-2xl text-4xl font-black tracking-tight text-[#4A2818] sm:text-6xl">
-              Basque Cheesecake, Baked With Orange Cat Energy
-            </h1>
+              <h1 className="mx-auto max-w-2xl text-4xl font-black tracking-tight text-[#4A2818] sm:text-6xl">
+                Basque Cheesecake, Baked With Oyen Energy
+              </h1>
 
-            <p className="mx-auto mt-4 max-w-2xl text-base font-bold leading-relaxed text-[#8A5432] sm:text-lg">
-              Check our monthly bake calendar, then DM us to confirm your order,
-              pickup, or delivery timing.
-            </p>
-
-            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 rounded-2xl bg-[#4A2818] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
-              >
-                <MessageCircle size={18} />
-                WhatsApp Us
-              </a>
-
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-4 text-sm font-black text-[#4A2818] shadow-sm ring-2 ring-[#F6D7B8] transition hover:bg-[#FFE7C9]"
-              >
-                <PawPrint size={18} />
-                Instagram
-              </a>
-
-              <a
-                href="/calendar"
-                className="flex items-center justify-center gap-2 rounded-2xl bg-[#F68B45] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
-              >
-                <CalendarDays size={18} />
-                View Calendar
-              </a>
-            </div>
-
-            <div className="mt-8 rounded-3xl border-2 border-[#F6D7B8] bg-white/70 p-5">
-              <p className="text-sm font-black uppercase tracking-wide text-[#A45128]">
-                How ordering works
+              <p className="mx-auto mt-4 max-w-2xl text-base font-bold leading-relaxed text-[#8A5432] sm:text-lg">
+                Check our monthly bake calendar, then DM us to confirm your
+                order, pickup, or delivery timing.
               </p>
 
-              <div className="mt-4 grid grid-cols-1 gap-3 text-left sm:grid-cols-3">
-                <div className="rounded-2xl bg-[#FFE7C9] p-4">
-                  <p className="text-sm font-black text-[#7B3F1D]">
-                    1. Check Calendar
-                  </p>
-                  <p className="mt-1 text-sm font-bold text-[#4A2818]">
-                    Review order cut-off, bake day, and delivery dates.
-                  </p>
-                </div>
+              <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2 rounded-2xl bg-[#4A2818] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
+                >
+                  <MessageCircle size={18} />
+                  WhatsApp Us
+                </a>
 
-                <div className="rounded-2xl bg-[#FFF4BD] p-4">
-                  <p className="text-sm font-black text-[#6A5314]">
-                    2. DM to Confirm
-                  </p>
-                  <p className="mt-1 text-sm font-bold text-[#4A2818]">
-                    Message us first before making payment.
-                  </p>
-                </div>
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#515BD4] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:scale-[1.02] hover:shadow-md"
+                >
+                  <PawPrint size={18} />
+                  Instagram
+                </a>
 
-                <div className="rounded-2xl bg-[#E9F5E7] p-4">
-                  <p className="text-sm font-black text-[#365B31]">
-                    3. Pickup / Delivery
-                  </p>
-                  <p className="mt-1 text-sm font-bold text-[#4A2818]">
-                    Standard delivery slots are shown on the calendar page.
-                  </p>
+                <a
+                  href="/calendar"
+                  className="flex items-center justify-center gap-2 rounded-2xl bg-[#F68B45] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
+                >
+                  <CalendarDays size={18} />
+                  View Calendar
+                </a>
+              </div>
+
+              <div className="mt-8 rounded-3xl border-2 border-[#F6D7B8] bg-white/70 p-5">
+                <p className="text-sm font-black uppercase tracking-wide text-[#A45128]">
+                  How ordering works
+                </p>
+
+                <div className="mt-4 grid grid-cols-1 gap-3 text-left sm:grid-cols-3">
+                  <div className="rounded-2xl bg-[#FFE7C9] p-4">
+                    <p className="text-sm font-black text-[#7B3F1D]">
+                      1. Check Calendar
+                    </p>
+                    <p className="mt-1 text-sm font-bold text-[#4A2818]">
+                      Review order cut-off, bake day, and delivery dates.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl bg-[#FFF4BD] p-4">
+                    <p className="text-sm font-black text-[#6A5314]">
+                      2. DM to Confirm
+                    </p>
+                    <p className="mt-1 text-sm font-bold text-[#4A2818]">
+                      Message us first before making payment.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl bg-[#E9F5E7] p-4">
+                    <p className="text-sm font-black text-[#365B31]">
+                      3. Pickup / Delivery
+                    </p>
+                    <p className="mt-1 text-sm font-bold text-[#4A2818]">
+                      Standard delivery slots are shown on the calendar page.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       </section>
     </main>
   );
 }
-
 
 function CalendarPage() {
   const [year, setYear] = useState(2026);
@@ -570,8 +581,12 @@ function CalendarPage() {
 
   return (
     <main
-      className="w-full overflow-x-hidden bg-[#F7EADB] p-2 sm:p-6"
-      style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+      className="min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-cover bg-center bg-no-repeat p-2 sm:p-4"
+      style={{
+        fontFamily: "Arial, Helvetica, sans-serif",
+        backgroundColor: "#F7EADB",
+        backgroundImage: "url('/cat-bg.png')",
+      }}
     >
       <section className="mx-auto w-full max-w-6xl overflow-hidden rounded-[28px] bg-[#F68B45] p-3 shadow-2xl sm:rounded-[34px] sm:p-6">
         <div className="rounded-[24px] bg-[#FFF7EA] p-3 shadow-xl sm:rounded-[28px] sm:p-6">
