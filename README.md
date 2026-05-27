@@ -1,4 +1,4 @@
-# The Orange Cat Bakery — Bake Calendar
+# The Orange Cat Bakery - Bake Calendar
 
 A simple monthly bake calendar for The Orange Cat Bakery.
 
