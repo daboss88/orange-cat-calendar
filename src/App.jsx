@@ -5,7 +5,6 @@ import {
   ChevronRight,
   Clock3,
   ChefHat,
-  ShoppingBag,
   Truck,
   PackageCheck,
   Ban,
@@ -34,15 +33,6 @@ const EVENT_TYPES = {
     text: "#7B3F1D",
     border: "#F7B267",
     dot: "#F7A44A",
-  },
-  ingredients: {
-    label: "Buy ingredients",
-    short: "Ingredients",
-    icon: ShoppingBag,
-    bg: "#FFECE8",
-    text: "#843E35",
-    border: "#F4A29A",
-    dot: "#E7776A",
   },
   bake: {
     label: "Bake day",
@@ -104,23 +94,37 @@ const makeDateKey = (year, monthIndex, day) =>
 
 const defaultEvents = {
   "2026-06-03": ["close"],
-  "2026-06-04": ["ingredients"],
   "2026-06-05": ["bake"],
   "2026-06-06": ["delivery"],
+
   "2026-06-10": ["close"],
-  "2026-06-11": ["ingredients"],
   "2026-06-12": ["bake"],
   "2026-06-13": ["delivery"],
+
   "2026-06-17": ["close"],
-  "2026-06-18": ["ingredients"],
   "2026-06-19": ["bake"],
   "2026-06-20": ["delivery", "soldOut"],
+
   "2026-06-24": ["close"],
-  "2026-06-25": ["ingredients"],
   "2026-06-26": ["bake"],
   "2026-06-27": ["delivery"],
+
   "2026-07-08": ["close"],
 };
+
+function sanitizeEvents(events) {
+  const cleaned = {};
+
+  Object.entries(events).forEach(([date, eventList]) => {
+    const validEvents = eventList.filter((eventType) => EVENT_TYPES[eventType]);
+
+    if (validEvents.length > 0) {
+      cleaned[date] = validEvents;
+    }
+  });
+
+  return cleaned;
+}
 
 function buildCalendarCells(year, monthIndex) {
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
@@ -252,7 +256,9 @@ function EditorPanel({
           type="button"
           onClick={() => setViewMode(viewMode === "edit" ? "preview" : "edit")}
           className="rounded-full bg-[#F68B45] p-2 text-white transition hover:bg-[#A45128]"
-          title={viewMode === "edit" ? "Preview customer view" : "Back to editor"}
+          title={
+            viewMode === "edit" ? "Preview customer view" : "Back to editor"
+          }
         >
           {viewMode === "edit" ? <Eye size={17} /> : <Edit3 size={17} />}
         </button>
@@ -287,7 +293,9 @@ function EditorPanel({
                 <Icon size={16} />
                 {event.label}
               </span>
-              <span className="text-xs font-black">{checked ? "ON" : "OFF"}</span>
+              <span className="text-xs font-black">
+                {checked ? "ON" : "OFF"}
+              </span>
             </button>
           );
         })}
@@ -369,7 +377,7 @@ export default function App() {
   const [eventsByDate, setEventsByDate] = useState(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : defaultEvents;
+      return saved ? sanitizeEvents(JSON.parse(saved)) : defaultEvents;
     } catch {
       return defaultEvents;
     }
@@ -441,7 +449,11 @@ export default function App() {
         return acc;
       }, {});
 
-    const exportText = `const defaultEvents = ${JSON.stringify(sortedEvents, null, 2)};`;
+    const exportText = `const defaultEvents = ${JSON.stringify(
+      sortedEvents,
+      null,
+      2
+    )};`;
 
     try {
       await navigator.clipboard.writeText(exportText);
@@ -622,7 +634,6 @@ export default function App() {
 
           <section className="mt-5 flex flex-wrap gap-2">
             <LegendItem type="close" />
-            <LegendItem type="ingredients" />
             <LegendItem type="bake" />
             <LegendItem type="delivery" />
             <LegendItem type="soldOut" />
@@ -635,7 +646,8 @@ export default function App() {
             </InfoCard>
 
             <InfoCard title="Delivery Slots" icon={<Truck size={15} />}>
-              Standard delivery windows are 10:00 AM – 2:00 PM or 2:00 PM – 4:00 PM.
+              Standard delivery windows are 10:00 AM – 2:00 PM or 2:00 PM – 4:00
+              PM.
             </InfoCard>
 
             <InfoCard title="Special Timing" icon={<PawPrint size={15} />}>
