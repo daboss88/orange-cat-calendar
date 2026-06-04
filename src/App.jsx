@@ -38,6 +38,90 @@ const HOME_ASSETS = {
   },
 };
 
+
+const MENU_ITEMS = [
+  {
+    id: "vanilla-bean-basque",
+    name: "Vanilla Bean Basque",
+    role: "The classic chonky one",
+    wholeImage: "/menu/vanilla-bean-basque-whole.png",
+    sliceImage: "/menu/vanilla-bean-basque-slice.png",
+    description:
+      "A creamy Basque burnt cheesecake made with premium selected vanilla bean, a caramelized top, and a soft custardy center.",
+    bestFor:
+      "first-timers, purists, and hoomans who believe the original should never be boring.",
+    oyen:
+      "Soft-spoken, creamy, and quietly judging every overcomplicated dessert.",
+    baseNote:
+      "Flourless cheesecake base. Please check toppings/allergens before ordering.",
+    detail:
+      "Warm vanilla, cream cheese richness, and that signature burnt Basque edge in one clean bite.",
+  },
+  {
+    id: "pistachio-kunafa-basque",
+    name: "Pistachio Kunafa Basque",
+    role: "The indulgent one",
+    wholeImage: "/menu/pistachio-kunafa-basque-whole.png",
+    sliceImage: "/menu/pistachio-kunafa-basque-slice.png",
+    description:
+      "Creamy Basque cheesecake topped with a rounded scoop of crunchy pistachio-kunafa filling, pistachio spread, and a light dark chocolate drizzle.",
+    bestFor:
+      "pistachio lovers, gifting, Dubai chocolate fans, and hoomans who like their desserts extra.",
+    oyen: "The chonkiest energy in the lineup.",
+    baseNote: "Flourless cheesecake base. Topping may contain gluten.",
+    detail:
+      "Soft creamy cheesecake underneath, crunchy pistachio-kunafa drama on top — rich, nutty, and very hard to ignore.",
+  },
+  {
+    id: "earl-grey-biscoff-basque",
+    name: "Earl Grey Biscoff Basque",
+    role: "The cozy one",
+    wholeImage: "/menu/earl-grey-biscoff-basque-whole.png",
+    sliceImage: "/menu/earl-grey-biscoff-basque-slice.png",
+    description:
+      "A fragrant Earl Grey Basque cheesecake paired with warm caramel-spiced Biscoff for a cozy, tea-time dessert feel.",
+    bestFor:
+      "tea lovers, café-dessert people, and hoomans who like calm but not boring.",
+    oyen: "Smells fancy. Still wants crumbs.",
+    baseNote: "Flourless cheesecake base. Topping may contain gluten.",
+    detail:
+      "Creamy, aromatic, and comforting without being too heavy — like afternoon tea, but cheesecake.",
+  },
+  {
+    id: "blueberry-lemon-basque",
+    name: "Blueberry Lemon Basque",
+    role: "The bright one",
+    wholeImage: "/menu/blueberry-lemon-basque-whole.png",
+    sliceImage: "/menu/blueberry-lemon-basque-slice.png",
+    description:
+      "Creamy Basque cheesecake with juicy blueberry sweetness and lemon brightness for a fresher, lighter finish.",
+    bestFor:
+      "fruit-dessert lovers, hot weather cravings, and “not too sweet please” hoomans.",
+    oyen: "Cheerful, tangy, and suspiciously easy to finish.",
+    baseNote:
+      "Flourless cheesecake base. Please check toppings/allergens before ordering.",
+    detail:
+      "It keeps the richness of burnt cheesecake, but adds a fresher finish so each bite feels lighter than expected.",
+  },
+  {
+    id: "peach-oolong-basque",
+    name: "Peach Oolong Basque",
+    role: "The unexpected one",
+    wholeImage: "/menu/peach-oolong-basque-whole.png",
+    sliceImage: "/menu/peach-oolong-basque-slice.png",
+    description:
+      "Peach oolong-infused Basque cheesecake finished with glossy peach oolong jelly. Fragrant, creamy, fruity, and tea-like.",
+    bestFor:
+      "peach oolong milk tea lovers, tea-dessert hoomans, and adventurous dessert fans.",
+    oyen: "Pretty, fragrant, and fully aware she is the main character.",
+    baseNote:
+      "Flourless cheesecake base. Please check toppings/allergens before ordering.",
+    detail:
+      "Soft tea aroma, gentle peach sweetness, creamy Basque richness, and a smooth jelly finish.",
+  },
+];
+
+
 const STORAGE_KEY = "orange-cat-bake-calendar-events-v1";
 
 const EVENT_TYPES = {
@@ -399,7 +483,7 @@ function HomePage() {
                 order, pickup, or delivery timing.
               </p>
 
-              <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
@@ -408,6 +492,14 @@ function HomePage() {
                 >
                   <MessageCircle size={18} />
                   WhatsApp Us
+                </a>
+
+                <a
+                href="/menu"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-[#F68B45] px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
+                >
+                  <ChefHat size={18} />
+                  View Menu
                 </a>
 
                 <a
@@ -475,6 +567,190 @@ function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function MenuPage() {
+  return (
+    <main
+      className="min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-[url('/cat-bg-mobile.png')] bg-cover bg-center bg-no-repeat p-4 sm:p-8 md:bg-[url('/cat-bg.png')]"
+      style={{
+        fontFamily: "Arial, Helvetica, sans-serif",
+      }}
+    >
+      <section className="mx-auto w-full max-w-6xl overflow-hidden rounded-[34px] bg-[#F68B45] p-3 shadow-2xl sm:p-6">
+        <div className="rounded-[28px] bg-[#FFF7EA] p-5 shadow-xl sm:p-8">
+          <header className="mb-8">
+            <div className="mb-5 flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#F68B45] px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-sm">
+                <PawPrint size={16} />
+                The Orange Cat Bakery
+              </div>
+
+              <a
+                href="/"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#4A2818] px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
+              >
+                <PawPrint size={16} />
+                Return Home
+              </a>
+
+              <a
+                href="/calendar"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-black text-[#4A2818] shadow-sm transition hover:bg-[#FFE7C9]"
+              >
+                <CalendarDays size={16} />
+                Bake Calendar
+              </a>
+            </div>
+
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#A45128]">
+              The Orange Cat First Five
+            </p>
+
+            <h1 className="mt-2 text-4xl font-black tracking-tight text-[#4A2818] sm:text-6xl">
+              The Bake Menu
+            </h1>
+
+            <p className="mt-4 max-w-3xl text-base font-bold leading-relaxed text-[#8A5432] sm:text-lg">
+              Small-batch 4-inch Basque burnt cheesecakes, baked by preorder.
+              Pick your flavor, check the bake calendar, then DM us to confirm
+              your slot.
+            </p>
+          </header>
+
+          <section className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+            {MENU_ITEMS.map((item) => (
+              <article
+                key={item.id}
+                className="overflow-hidden rounded-[30px] border-2 border-[#F6D7B8] bg-white/80 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="relative overflow-hidden rounded-b-[28px] bg-[#FFE7C9] p-4 sm:p-5">
+                  <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                    <div className="inline-flex rounded-full bg-white/70 px-3 py-1 text-xs font-black uppercase tracking-wide text-[#A45128]">
+                      {item.role}
+                    </div>
+
+                    <div className="inline-flex rounded-full bg-[#4A2818] px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-white">
+                      Hover / tap to peek inside
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="group relative block h-[300px] w-full overflow-hidden rounded-[30px] bg-[#FFF7EA] shadow-inner outline-none ring-1 ring-[#F6D7B8] transition focus:ring-4 focus:ring-[#F68B45]/30 sm:h-[330px]"
+                    aria-label={`View inside slice of ${item.name}`}
+                  >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.95),rgba(255,231,201,0.55))]" />
+
+                    <img
+                      src={item.wholeImage}
+                      alt={`${item.name} whole cake`}
+                      className="absolute left-1/2 top-1/2 z-10 h-[230px] w-full max-w-[330px] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-2xl transition duration-500 group-hover:scale-95 group-hover:opacity-25 group-hover:blur-[1px] group-focus:scale-95 group-focus:opacity-25 group-focus:blur-[1px] sm:h-[260px]"
+                    />
+
+                    <img
+                      src={item.sliceImage}
+                      alt={`${item.name} inside slice`}
+                      className="absolute left-1/2 top-1/2 z-20 h-[230px] w-full max-w-[350px] -translate-x-1/2 -translate-y-1/2 scale-90 object-contain opacity-0 drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:opacity-100 group-focus:scale-125 group-focus:opacity-100 sm:h-[260px]"
+                    />
+
+                    <div className="absolute bottom-4 left-1/2 z-30 -translate-x-1/2 rounded-full bg-white/85 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#A45128] shadow-sm transition duration-300 group-hover:bg-[#4A2818] group-hover:text-white group-focus:bg-[#4A2818] group-focus:text-white">
+                      Inside reveal
+                    </div>
+                  </button>
+                </div>
+
+                <div className="p-5">
+                  <h2 className="text-2xl font-black text-[#4A2818]">
+                    {item.name}
+                  </h2>
+
+                  <p className="mt-3 text-sm font-bold leading-relaxed text-[#8A5432]">
+                    {item.description}
+                  </p>
+
+                  <div className="mt-4 grid grid-cols-1 gap-3">
+                    <div className="rounded-2xl bg-[#FFF4BD] p-4">
+                      <p className="text-xs font-black uppercase tracking-wide text-[#6A5314]">
+                        Best for
+                      </p>
+                      <p className="mt-1 text-sm font-bold leading-relaxed text-[#4A2818]">
+                        {item.bestFor}
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl bg-[#FFE7C9] p-4">
+                      <p className="text-xs font-black uppercase tracking-wide text-[#A45128]">
+                        Oyen note
+                      </p>
+                      <p className="mt-1 text-sm font-bold leading-relaxed text-[#4A2818]">
+                        {item.oyen}
+                      </p>
+                    </div>
+                  </div>
+
+                  <details className="mt-4 rounded-2xl border border-[#F6D7B8] bg-[#FFF7EA] p-4">
+                    <summary className="cursor-pointer text-sm font-black text-[#4A2818]">
+                      Flavor details
+                    </summary>
+
+                    <p className="mt-3 text-sm font-bold leading-relaxed text-[#8A5432]">
+                      {item.detail}
+                    </p>
+
+                    <p className="mt-3 text-xs font-bold leading-relaxed text-[#8A5432]">
+                      <span className="font-black text-[#4A2818]">
+                        Base note:
+                      </span>{" "}
+                      {item.baseNote}
+                    </p>
+                  </details>
+
+                  <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <a
+                      href="/calendar"
+                      className="flex items-center justify-center gap-2 rounded-2xl bg-[#F68B45] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
+                    >
+                      <CalendarDays size={17} />
+                      Check Calendar
+                    </a>
+
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-2 rounded-2xl bg-[#4A2818] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#A45128]"
+                    >
+                      <MessageCircle size={17} />
+                      WhatsApp Us
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <section className="mt-8 rounded-[28px] border-2 border-[#F6D7B8] bg-white/75 p-5">
+            <h2 className="text-xl font-black text-[#4A2818]">
+              Before ordering
+            </h2>
+
+            <p className="mt-3 text-sm font-bold leading-relaxed text-[#8A5432]">
+              Each cheesecake starts with a flourless Basque-style base — no
+              wheat flour added to the cheesecake body. Some toppings may
+              contain gluten, so please check the flavor details before
+              ordering.
+            </p>
+
+            <p className="mt-3 text-sm font-bold leading-relaxed text-[#8A5432]">
+              Ingredient and allergen notes are available before ordering.
+              Please DM us if you have any dietary concerns.
+            </p>
+          </section>
         </div>
       </section>
     </main>
@@ -800,6 +1076,10 @@ export default function App() {
 
   if (path === "/calendar") {
     return <CalendarPage />;
+  }
+
+  if (path === "/menu") {
+    return <MenuPage />;
   }
 
   return <HomePage />;
