@@ -892,7 +892,7 @@ function CalendarPage() {
 
   return (
     <main
-      className="min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-cover bg-center bg-no-repeat p-2 sm:p-4 md:bg-[url('/cat-bg.png')]"
+      className="min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-[url('/cat-bg-mobile.png')] bg-cover bg-center bg-no-repeat p-2 sm:p-4 md:bg-[url('/cat-bg.png')]"
       style={{
         fontFamily: "Arial, Helvetica, sans-serif",
       }}
