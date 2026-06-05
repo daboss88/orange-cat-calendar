@@ -591,14 +591,21 @@ function MenuPage() {
   };
 
   return (
+
+
     <main
-      className="min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-[url('/cat-bg-mobile.png')] bg-cover bg-center bg-no-repeat p-4 sm:p-8 md:bg-[url('/cat-bg.png')]"
+      className="relative min-h-screen w-full overflow-x-hidden p-4 sm:p-8"
       style={{
         fontFamily: "Arial, Helvetica, sans-serif",
       }}
     >
-      <section className="mx-auto w-full max-w-6xl overflow-hidden rounded-[34px] bg-[#F68B45] p-3 shadow-2xl sm:p-6">
-        <div className="rounded-[28px] bg-[#FFF7EA] p-5 shadow-xl sm:p-8">
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 z-0 bg-[#F7EADB] bg-[url('/cat-bg-mobile.png')] bg-cover bg-center bg-no-repeat md:bg-[url('/cat-bg.png')]"
+      />
+
+      <section className="relative z-10 mx-auto w-full max-w-6xl overflow-hidden rounded-[34px] border-2 border-[#F6D7B8]/80 bg-white/45 p-3 shadow-2xl backdrop-blur-[2px] sm:p-6">
+        <div className="rounded-[28px] bg-[#FFF7EA]/88 p-5 shadow-xl backdrop-blur-sm sm:p-8">
           <header className="mb-8">
             <div className="mb-5 flex flex-wrap items-center gap-2">
               <div className="inline-flex items-center gap-2 rounded-full bg-[#F68B45] px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-sm">
@@ -897,7 +904,7 @@ function CalendarPage() {
         fontFamily: "Arial, Helvetica, sans-serif",
       }}
     >
-      <section className="mx-auto w-full max-w-6xl overflow-hidden rounded-[28px] bg-[#F68B45] p-3 shadow-2xl sm:rounded-[34px] sm:p-6">
+      <section className="relative z-10 mx-auto w-full max-w-6xl overflow-hidden rounded-[34px] border-2 border-[#F6D7B8]/80 bg-white/45 p-3 shadow-2xl backdrop-blur-[2px] sm:p-6">
         <div className="rounded-[24px] bg-[#FFF7EA] p-3 shadow-xl sm:rounded-[28px] sm:p-6">
           <header className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
