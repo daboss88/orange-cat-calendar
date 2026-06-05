@@ -574,6 +574,22 @@ function HomePage() {
 }
 
 function MenuPage() {
+  const [revealedItemId, setRevealedItemId] = useState(null);
+
+  const toggleReveal = (itemId) => {
+  setRevealedItemId((current) => (current === itemId ? null : itemId));
+  };
+
+  const handleRevealClick = (itemId) => {
+    const isDesktopPointer =
+      typeof window !== "undefined" &&
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (isDesktopPointer) return;
+
+    toggleReveal(itemId);
+  };
+
   return (
     <main
       className="min-h-screen w-full overflow-x-hidden bg-[#F7EADB] bg-[url('/cat-bg-mobile.png')] bg-cover bg-center bg-no-repeat p-4 sm:p-8 md:bg-[url('/cat-bg.png')]"
@@ -633,32 +649,42 @@ function MenuPage() {
                     <div className="inline-flex rounded-full bg-white/70 px-3 py-1 text-xs font-black uppercase tracking-wide text-[#A45128]">
                       {item.role}
                     </div>
-
-                    <div className="inline-flex rounded-full bg-[#4A2818] px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-white">
-                      Hover / tap to peek inside
-                    </div>
                   </div>
 
-                  <button
-                    type="button"
-                    className="group relative block h-[300px] w-full overflow-hidden rounded-[30px] bg-[#FFF7EA] shadow-inner outline-none ring-1 ring-[#F6D7B8] transition focus:ring-4 focus:ring-[#F68B45]/30 sm:h-[330px]"
-                    aria-label={`View inside slice of ${item.name}`}
-                  >
+                    <button
+                      type="button"
+                      onClick={() => handleRevealClick(item.id)}
+                      aria-pressed={revealedItemId === item.id}
+                      className="group relative block h-[300px] w-full overflow-hidden rounded-[30px] bg-[#FFF7EA] shadow-inner outline-none ring-1 ring-[#F6D7B8] transition focus:ring-4 focus:ring-[#F68B45]/30 sm:h-[330px]"
+                      aria-label={`View inside slice of ${item.name}`}
+                    >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.95),rgba(255,231,201,0.55))]" />
 
                     <img
                       src={item.wholeImage}
                       alt={`${item.name} whole cake`}
-                      className="absolute left-1/2 top-1/2 z-10 h-[230px] w-full max-w-[330px] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-2xl transition duration-500 group-hover:scale-95 group-hover:opacity-25 group-hover:blur-[1px] group-focus:scale-95 group-focus:opacity-25 group-focus:blur-[1px] sm:h-[260px]"
+                      className={`absolute left-1/2 top-1/2 z-10 h-[230px] w-full max-w-[330px] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-2xl transition duration-500 group-hover:scale-95 group-hover:opacity-25 group-hover:blur-[1px] sm:h-[260px] ${
+                        revealedItemId === item.id
+                          ? "scale-95 opacity-25 blur-[1px]"
+                          : "scale-100 opacity-100 blur-0"
+                      }`}
                     />
 
                     <img
                       src={item.sliceImage}
                       alt={`${item.name} inside slice`}
-                      className="absolute left-1/2 top-1/2 z-20 h-[230px] w-full max-w-[350px] -translate-x-1/2 -translate-y-1/2 scale-90 object-contain opacity-0 drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:opacity-100 group-focus:scale-125 group-focus:opacity-100 sm:h-[260px]"
+                      className={`absolute left-1/2 top-1/2 z-20 h-[230px] w-full max-w-[350px] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:opacity-100 sm:h-[260px] ${
+                        revealedItemId === item.id
+                          ? "scale-125 opacity-100"
+                          : "scale-90 opacity-0"
+                      }`}
                     />
 
-                    <div className="absolute bottom-4 left-1/2 z-30 -translate-x-1/2 rounded-full bg-white/85 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#A45128] shadow-sm transition duration-300 group-hover:bg-[#4A2818] group-hover:text-white group-focus:bg-[#4A2818] group-focus:text-white">
+                    <div className={`absolute bottom-4 left-1/2 z-30 -translate-x-1/2 rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.16em] shadow-sm transition duration-300 group-hover:bg-[#4A2818] group-hover:text-white ${
+                        revealedItemId === item.id
+                          ? "bg-[#4A2818] text-white"
+                          : "bg-white/85 text-[#A45128]"
+                      }`}>
                       Inside reveal
                     </div>
                   </button>
