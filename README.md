@@ -15,7 +15,7 @@ The calendar is designed for customers to quickly check the latest bake schedule
 
 The public version is viewer-only.
 
-Schedule dates are maintained inside the React app by updating the `defaultEvents` section in `src/App.jsx`.
+Schedule dates are maintained inside the React app by updating the `defaultEvents` object in `src/calendarEvents.js`. The calendar's default landing month is set in `src/App.jsx`.
 
 ## Tech stack
 

@@ -792,7 +792,7 @@ function MenuPage() {
 
 function CalendarPage() {
   const [year, setYear] = useState(2026);
-  const [monthIndex, setMonthIndex] = useState(5);
+  const [monthIndex, setMonthIndex] = useState(8);
   const [selectedDate, setSelectedDate] = useState("2026-06-20");
   const [viewMode, setViewMode] = useState(SHOW_EDITOR ? "edit" : "preview");
   const [copied, setCopied] = useState(false);
@@ -828,6 +828,19 @@ function CalendarPage() {
   );
 
   const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+
+  const firstCloseDate = Object.keys(eventsByDate)
+    .filter(
+      (dateKey) =>
+        dateKey.startsWith(`${year}-${pad(monthIndex + 1)}-`) &&
+        eventsByDate[dateKey].includes("close")
+    )
+    .sort()[0];
+  const closeDayLabel = firstCloseDate
+    ? new Date(`${firstCloseDate}T00:00:00`).toLocaleDateString("en-US", {
+        weekday: "long",
+      })
+    : "Wednesday";
 
   const changeMonth = (direction) => {
     const next = new Date(year, monthIndex + direction, 1);
@@ -961,7 +974,7 @@ function CalendarPage() {
             <div className="rounded-3xl bg-[#FFE7C9] p-4 shadow-sm">
               <div className="mb-1 flex items-center gap-2 text-sm font-black text-[#7B3F1D]">
                 <Clock3 size={17} />
-                Wednesday
+                {closeDayLabel}
               </div>
               <div className="text-2xl font-black text-[#4A2818]">
                 Orders Close
